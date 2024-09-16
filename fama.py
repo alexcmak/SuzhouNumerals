@@ -1,6 +1,8 @@
 # python chinese numeral 
 # Suzhou FaMa 蘇州碼子 numerals
-
+#
+# Alex Mak
+#
 # translate into 花碼 'fama' symbols, determine unit.
 
 
@@ -14,7 +16,7 @@
 #7	〧
 #8	〨
 #9	〩
-#10	〸
+
 
 #万 千 百 十
 
@@ -58,8 +60,8 @@ def readWholeNumberFromUser():
 			hasDollar = True
 			str = str[1:]
 
-		if int(str) > 10000:
-			print(f"Sorry, number is too big, less than 10000 digits please.")
+		if int(str) >= 100000:
+			print(f"Sorry, number is too big, less than 100000 digits please.")
 			continue
 		else:
 			# check for all digit
@@ -88,33 +90,12 @@ def determineUnit(number):
 
 # simplistic map
 # handle 1, 2, 3 alternates later
+
+digits = "〇〡〢〣〤〥〦〧〨〩"
+
 def map_num(n):
+	return digits[int(n)]
 
-	if (n == '0'):
-		unit = '〇'
-	elif (n == '1'):
-		unit = '〡'
-	elif (n == '2'):
-		unit = '〢'
-	elif (n == '3'):
-		unit = '〣'
-	elif (n == '4'):
-		unit = '〤'
-	elif (n == '5'):
-		unit = '〥'
-	elif (n == '6'):
-		unit = '〦'
-	elif (n == '7'):
-		unit = '〧'
-	elif (n == '8'):
-		unit = '〨'
-	elif (n == '9'):
-		unit = '〩'
-	else:
-		unit = ''
-
-
-	return unit
 
 
 def fama(number):
@@ -128,13 +109,14 @@ def fama(number):
 
 def main():
 
-	number = readWholeNumberFromUser()
+	number_dollar = readWholeNumberFromUser()
+	number = number_dollar[0]
 
-	fama(number[0])
+	fama(number)
 	unit = determineUnit(number)
 	print(unit, end="")
 
-	if (number[1] == True):
+	if (number_dollar[1] == True):
 		print('元')
 
 	print()
