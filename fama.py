@@ -63,8 +63,8 @@ def readAmount():
 		else:
 			isValidWord = True
 
-		print(yun)
-		print(hou)
+		#print(yun)
+		#print(hou)
 
 	remainder = "0"
 	amount = str(yun)
