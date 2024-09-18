@@ -42,6 +42,7 @@ def readAmount():
 	isValidWord = False
 	value = ""
 	yun = 0
+	money_unit = ""
 	
 	while not isValidWord:
 	
@@ -62,10 +63,24 @@ def readAmount():
 		else:
 			isValidWord = True
 
-		#print(yun)
-		#print(hou)
+		print(yun)
+		print(hou)
 
-	return str(yun), hasDollar
+	remainder = "0"
+	amount = str(yun)
+	if (hasDollar == True):
+		money_unit = '元'
+		remainder = str(hou)
+
+		if (yun == 0):
+			money_unit = '毫'
+			remainder = str(hou)
+
+			if (hou < 9):
+				money_unit = '仙'
+				remainder = str(hou)
+
+	return amount, remainder, money_unit
 
 
 
@@ -102,7 +117,7 @@ def fama(number):
 	for i,c in enumerate(number):
 		print(map_num(c), end='')
 
-	print()
+
 
 
 
@@ -110,13 +125,24 @@ def main():
 
 	number_dollar = readAmount()
 	number = number_dollar[0]
+	remainder = number_dollar[1]
 
-	fama(number)
+
+	if (int(number) > 0):
+		fama(number)
+
+
+
+	if (int(remainder) > 0):
+		fama(remainder)
+	print()
+	
+
 	unit = determineUnit(number)
 	print(unit, end="")
 
-	if (number_dollar[1] == True):
-		print('元')
+	print(number_dollar[2])
+
 
 	print()
 
