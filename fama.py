@@ -5,20 +5,11 @@
 #
 # translate into 花碼 'fama' symbols, determine unit.
 
+# Numerals:
+# 〇〡〢〣〤〥〦〧〨〩
+# 0123456789
 
-#0	〇
-#1	〡
-#2	〢
-#3	〣
-#4	〤
-#5	〥
-#6	〦
-#7	〧
-#8	〨
-#9	〩
-
-
-#万 千 百 十
+# Units: 万 千 百 十
 
 # 2076
 #
@@ -47,28 +38,36 @@
 #万
 
 
-
-def readWholeNumberFromUser():
+def readAmount():
 	isValidWord = False
-	str = ""
-	hasDollar = False
-
+	value = ""
+	yun = 0
+	
 	while not isValidWord:
-		str = input("Please enter a number or dollar value:")
+	
+		hasDollar = False
+		value = input("Please enter amount:")
 
-		if (str.startswith('$')):
+		if (value.startswith('$')):
 			hasDollar = True
-			str = str[1:]
+			value = value[1:]
 
-		if int(str) >= 100000:
+		a = float(value)
+		hou = int(round(a % 1,2) * 100)  # 毫仙
+		yun = int(a //1)      # 元
+		
+		if (yun) > 10000:
 			print(f"Sorry, number is too big, less than 100000 digits please.")
 			continue
 		else:
-			# check for all digit
-			if (str.isdigit()):
-				isValidWord = True
+			isValidWord = True
 
-	return str, hasDollar
+		#print(yun)
+		#print(hou)
+
+	return str(yun), hasDollar
+
+
 
 def determineUnit(number):
 
@@ -109,7 +108,7 @@ def fama(number):
 
 def main():
 
-	number_dollar = readWholeNumberFromUser()
+	number_dollar = readAmount()
 	number = number_dollar[0]
 
 	fama(number)
@@ -120,7 +119,6 @@ def main():
 		print('元')
 
 	print()
-
 
 
 if __name__ == "__main__":
