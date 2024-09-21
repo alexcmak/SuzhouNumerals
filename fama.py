@@ -1,5 +1,4 @@
-# python chinese numeral 
-# Suzhou FaMa 蘇州碼子 numerals
+# python Suzhou Numerals 蘇州碼子
 #
 # Alex Mak
 #
@@ -79,6 +78,9 @@ def readAmount():
 			if (hou < 9):
 				money_unit = '仙'
 				remainder = str(hou)
+	else:
+		remainder = str(hou)
+		
 
 	return amount, remainder, money_unit
 
@@ -103,22 +105,36 @@ def determineUnit(number):
 
 
 # simplistic map
-# handle 1, 2, 3 alternates later
-
 digits = "〇〡〢〣〤〥〦〧〨〩"
 
 def map_num(n):
 	return digits[int(n)]
 
+#alternates
+digits2 = "〇一二三〤〥〦〧〨〩"
 
+def map_num2(n):
+	return digits2[int(n)]
 
 def fama(number):
 
+	numeric_number = []
+	fama_number = []
 	for i,c in enumerate(number):
-		print(map_num(c), end='')
+		numeric_number.append(c)
+		fama_number.append(map_num(c))
 
+	i = 0  
+	while i < len(numeric_number)-1:
+		n = int(numeric_number[i])
+		next_n = int(numeric_number[i+1])
 
+		if (n >= 1 and n <= 3) and (next_n >= 1 and next_n <= 3):
+			fama_number[i+1] = map_num2(next_n)
 
+		i += 2
+
+	print("".join(fama_number), end = "")
 
 
 def main():
@@ -127,11 +143,11 @@ def main():
 	number = number_dollar[0]
 	remainder = number_dollar[1]
 
+	#print(number)
+	#print(remainder)
 
 	if (int(number) > 0):
 		fama(number)
-
-
 
 	if (int(remainder) > 0):
 		fama(remainder)
