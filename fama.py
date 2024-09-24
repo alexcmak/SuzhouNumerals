@@ -31,10 +31,6 @@
 # 〡 〇〇
 # 万
 
-#100,000 
-
-#十〇〇
-#万
 
 
 def readAmount():
@@ -56,8 +52,8 @@ def readAmount():
 		hou = int(round(a % 1,2) * 100)  # 毫仙
 		yun = int(a //1)      # 元
 		
-		if (yun) > 10000:
-			print(f"Sorry, number is too big, less than 100000 digits please.")
+		if (yun) >= 100000:
+			print(f"Sorry, number is too big, less than 100000 please.")
 			continue
 		else:
 			isValidWord = True
@@ -90,16 +86,19 @@ def determineUnit(number):
 
 	num_of_digits = len(number)
 
-	if (num_of_digits == 5):
-		unit = "万"
-	elif (num_of_digits == 4):
-		unit = "千"
-	elif (num_of_digits == 3):
-		unit = "百"
-	elif (num_of_digits == 2):
-		unit = "十"
-	else:
-		unit = ""
+
+	match num_of_digits:
+		case 5:
+			unit = '万'
+		case 4:
+			unit = '千'
+		case 3:
+			unit = '百'
+		case 2:
+			unit = '十'
+		case _:
+			unit = ''
+
 
 	return unit
 
@@ -111,7 +110,7 @@ def map_num(n):
 	return digits[int(n)]
 
 #alternates
-digits2 = "〇一二三〤〥〦〧〨〩"
+digits2 = " 一二三"
 
 def map_num2(n):
 	return digits2[int(n)]
@@ -158,7 +157,6 @@ def main():
 	print(unit, end="")
 
 	print(number_dollar[2])
-
 
 	print()
 
