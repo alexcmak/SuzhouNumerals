@@ -42,17 +42,17 @@ def main():
 	#print(remainder)
 
 	if (int(number) >= 0):
-		Fama.fama_number(number)
+		print(Fama.fama_number(number), end = "")
 
 	if (int(remainder) > 0):
-		Fama.fama_number(remainder)
+		print(Fama.fama_number(remainder), end = "")
 	print()
 	
 
-	unit = Fama.determineUnit(number)
+	unit = Fama.determineUnit(number) # numeric unit
 	print(unit, end="")
 
-	print(number_remainder_unit[2])
+	print(number_remainder_unit[2])  # optional money unit
 
 	print()
 

@@ -116,7 +116,5 @@ class fama:
 
 			i += 2
 
-		print("".join(fama_number), end = "")
-
-
+		return "".join(fama_number)
 
