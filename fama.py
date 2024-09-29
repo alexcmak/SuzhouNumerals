@@ -36,29 +36,33 @@
 def readAmount():
 	isValidWord = False
 	value = ""
-	yun = 0
-	money_unit = ""
-	
+	amount = 0
+
 	while not isValidWord:
 	
 		hasDollar = False
-		value = input("Please enter amount:")
+		amount = input("Please enter amount:")
 
-		if (value.startswith('$')):
+		if (amount.startswith('$')):
 			hasDollar = True
-			value = value[1:]
+			amount = amount[1:]
 
-		amount = float(value)
+		value = float(amount)
 
 		
-		if (amount >= 100000 or amount < 0):
+		if (value >= 100000 or value < 0):
 			print(f"Sorry, invalid number 0 to 100000 please.")
 			continue
 		else:
 			isValidWord = True
 
-	hou = int(round(amount % 1,2) * 100)  # 毫仙
-	yun = int(amount //1)      # 元
+	return parseAmount(value, hasDollar)
+
+def parseAmount(value, hasDollar):
+
+	money_unit = ""
+	hou = int(round(value % 1,2) * 100)  # 毫仙
+	yun = int(value //1)      # 元
 
 	remainder = "0"
 	sAmount = str(yun)
