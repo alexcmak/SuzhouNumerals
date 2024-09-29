@@ -49,14 +49,14 @@ def readAmount():
 
 		value = float(amount)
 
-		
 		if (value >= 100000 or value < 0):
 			print(f"Sorry, invalid number 0 to 100000 please.")
 			continue
 		else:
 			isValidWord = True
 
-	return parseAmount(value, hasDollar)
+	return value, hasDollar
+
 
 def parseAmount(value, hasDollar):
 
@@ -141,7 +141,9 @@ def fama(number):
 
 def main():
 
-	number_dollar = readAmount()
+	value = readAmount()
+
+	number_dollar = parseAmount(value[0], value[1])
 	number = number_dollar[0]
 	remainder = number_dollar[1]
 
