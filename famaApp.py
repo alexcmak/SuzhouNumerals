@@ -34,9 +34,9 @@ def readAmount():
 def main():
 
 	number_dollar = readAmount()
-	number_dollar = Fama.parseAmount(number_dollar)
-	number = number_dollar[0]
-	remainder = number_dollar[1]
+	number_remainder_unit = Fama.parseAmount(number_dollar)
+	number = number_remainder_unit[0]
+	remainder = number_remainder_unit[1]
 
 	#print(number)
 	#print(remainder)
@@ -52,7 +52,7 @@ def main():
 	unit = Fama.determineUnit(number)
 	print(unit, end="")
 
-	print(number_dollar[2])
+	print(number_remainder_unit[2])
 
 	print()
 
