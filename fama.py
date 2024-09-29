@@ -48,21 +48,20 @@ def readAmount():
 			hasDollar = True
 			value = value[1:]
 
-		a = float(value)
-		hou = int(round(a % 1,2) * 100)  # 毫仙
-		yun = int(a //1)      # 元
+		amount = float(value)
+
 		
-		if (yun) >= 100000:
-			print(f"Sorry, number is too big, less than 100000 please.")
+		if (amount >= 100000 or amount < 0):
+			print(f"Sorry, invalid number 0 to 100000 please.")
 			continue
 		else:
 			isValidWord = True
 
-		#print(yun)
-		#print(hou)
+	hou = int(round(amount % 1,2) * 100)  # 毫仙
+	yun = int(amount //1)      # 元
 
 	remainder = "0"
-	amount = str(yun)
+	sAmount = str(yun)
 	if (hasDollar == True):
 		money_unit = '元'
 		remainder = str(hou)
@@ -78,7 +77,7 @@ def readAmount():
 		remainder = str(hou)
 		
 
-	return amount, remainder, money_unit
+	return sAmount, remainder, money_unit
 
 
 
@@ -145,7 +144,7 @@ def main():
 	#print(number)
 	#print(remainder)
 
-	if (int(number) > 0):
+	if (int(number) >= 0):
 		fama(number)
 
 	if (int(remainder) > 0):
