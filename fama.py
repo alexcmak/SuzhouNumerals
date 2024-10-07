@@ -71,21 +71,13 @@ class fama:
 
 	def determineUnit(self, number):
 
+		units = " 十百千万"
 		num_of_digits = len(number)
 
-		match num_of_digits:
-			case 5:
-				unit = '万'
-			case 4:
-				unit = '千'
-			case 3:
-				unit = '百'
-			case 2:
-				unit = '十'
-			case _:
-				unit = ''
+		if num_of_digits == 1:
+			return ""
 
-		return unit
+		return units[num_of_digits-1]
 
 
 	# simplistic map
